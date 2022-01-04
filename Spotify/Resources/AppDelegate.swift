@@ -9,23 +9,23 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     // FIXME: コメントアウトしても変わらない
-    // var window: UIWindow?
-
+    //    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // FIXME: コメントアウトしても変わらない
-        // let window = UIWindow(frame: UIScreen.main.bounds)
-        
-        // if AuthManager.shared.isSignedIn {
-        //     window.rootViewController = TabBarViewController()
-        // }
-        // else {
-        //     window.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
-        // }
-        //  window.makeKeyAndVisible()
-        //  self.window = window
+        //        let window = UIWindow(frame: UIScreen.main.bounds)
+        //
+        //        if AuthManager.shared.isSignedIn {
+        //            window.rootViewController = TabBarViewController()
+        //        }
+        //        else {
+        //            window.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
+        //        }
+        //        window.makeKeyAndVisible()
+        //        self.window = window
         
         return true
     }

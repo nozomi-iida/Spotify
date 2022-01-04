@@ -29,6 +29,8 @@
 		7F209F8127818A2100ACD8AC /* AudioTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F209F8027818A2100ACD8AC /* AudioTrack.swift */; };
 		7F209F8327818A3000ACD8AC /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F209F8227818A3000ACD8AC /* Artist.swift */; };
 		7F209F8527818A4000ACD8AC /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F209F8427818A4000ACD8AC /* UserProfile.swift */; };
+		7F29454427844D2100923DCF /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F29454327844D2100923DCF /* Extentions.swift */; };
+		7F2945462784833200923DCF /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2945452784833200923DCF /* AuthResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,8 @@
 		7F209F8027818A2100ACD8AC /* AudioTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrack.swift; sourceTree = "<group>"; };
 		7F209F8227818A3000ACD8AC /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		7F209F8427818A4000ACD8AC /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		7F29454327844D2100923DCF /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		7F2945452784833200923DCF /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 				7F209F8027818A2100ACD8AC /* AudioTrack.swift */,
 				7F209F8227818A3000ACD8AC /* Artist.swift */,
 				7F209F8427818A4000ACD8AC /* UserProfile.swift */,
+				7F2945452784833200923DCF /* AuthResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				7F209F51278182FC00ACD8AC /* Assets.xcassets */,
 				7F209F48278182F300ACD8AC /* AppDelegate.swift */,
 				7F209F4A278182F300ACD8AC /* SceneDelegate.swift */,
+				7F29454327844D2100923DCF /* Extentions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -257,6 +263,7 @@
 				7F209F712781897800ACD8AC /* ProfileViewController.swift in Sources */,
 				7F209F632781887500ACD8AC /* TabBarViewController.swift in Sources */,
 				7F209F7D278189FD00ACD8AC /* HapticsManager.swift in Sources */,
+				7F2945462784833200923DCF /* AuthResponse.swift in Sources */,
 				7F209F8127818A2100ACD8AC /* AudioTrack.swift in Sources */,
 				7F209F65278188AA00ACD8AC /* LibraryViewController.swift in Sources */,
 				7F209F6B2781894400ACD8AC /* AuthViewController.swift in Sources */,
@@ -269,6 +276,7 @@
 				7F209F732781898300ACD8AC /* PlayerViewController.swift in Sources */,
 				7F209F7B278189E700ACD8AC /* APICaller.swift in Sources */,
 				7F209F4B278182F300ACD8AC /* SceneDelegate.swift in Sources */,
+				7F29454427844D2100923DCF /* Extentions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
