@@ -11,6 +11,8 @@ final class AuthManager {
     // static: 全インスタンスから共通で利用される
     static let shared = AuthManager()
     
+    private var refreshingToken = false
+    
     struct Constants {
         static let clientID = "5302de97360a49bfa6c34da240910fd2"
         static let clientSecret = "791c5f33d4094e449584a05f9fcc1db6"
@@ -43,7 +45,7 @@ final class AuthManager {
         return UserDefaults.standard.object(forKey: "expirationDate") as? Date
     }
     
-    private var shouldRefreshToken: Bool? {
+    private var shouldRefreshToken: Bool {
         guard let expirationDate = tokenExpirationDate else {
             return false
         }
@@ -101,19 +103,51 @@ final class AuthManager {
         task.resume()
     }
     
-    public func refreshIfNeeded(completion: @escaping (Bool) -> Void) {
-//        guard shouldRefreshToken else {
-//            completion(true)
-//            return
-//        }
+    private var onRefreshBlocks = [((String) -> Void)]()
+    
+    /// Supplies valid token to be used with API Calls
+    public func withValidToken(completion: @escaping (String) -> Void) {
+        guard !refreshingToken else {
+            // Append the completon
+            onRefreshBlocks.append(completion)
+            return
+        }
+
+        if shouldRefreshToken {
+            // Refresh
+            refreshIfNeeded { [weak self] success in
+                if success {
+                    if let token = self?.accessToken, success {
+                        completion(token)
+                    }
+                }
+            }
+        }
+        else if let token = accessToken {
+            completion(token)
+        }
+    }
+    
+    public func refreshIfNeeded(completion:  ((Bool) -> Void)?) {
+        guard !refreshingToken else {
+            return
+        }
+        
+        guard shouldRefreshToken else {
+            completion?(true)
+            return
+        }
         
         guard let refreshToken = self.refreshToken else {
             return
         }
         
+        // Refresh the token
         guard let url = URL(string: Constants.tokenAPIURL) else {
             return
         }
+        
+        refreshingToken = true
         
         var components = URLComponents()
         components.queryItems = [
@@ -130,7 +164,7 @@ final class AuthManager {
         let data = basicToken.data(using: .utf8)
         guard let base64String = data?.base64EncodedString() else {
             print("Failure to get base64")
-            completion(false)
+            completion?(false)
             return
         }
         
@@ -138,9 +172,10 @@ final class AuthManager {
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
         
         let task = URLSession.shared.dataTask(with: request) { [weak self] data, _, error in
+            self?.refreshingToken = false
             guard let data = data,
                   error == nil else {
-                      completion(false)
+                      completion?(false)
                       return
                   }
             
@@ -148,11 +183,12 @@ final class AuthManager {
                 let result = try JSONDecoder().decode(AuthResponse.self, from: data)
                 print("Successfully refreshed")
                 self?.chacheToken(result: result)
-                completion(true)
+                self?.onRefreshBlocks.forEach { $0(result.access_token) }
+                completion?(true)
             }
             catch {
                 print("Error: \(error.localizedDescription)")
-                completion(false)
+                completion?(false)
             }
         }
         task.resume()
