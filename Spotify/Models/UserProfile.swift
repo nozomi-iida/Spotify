@@ -15,10 +15,7 @@ struct UserProfile: Codable {
     let external_urls: [String: String]
     let id: String
     let product: String
-    let images: [UserImage]
+    let images: [APIImage]
 }
 
-// Codable: API通信等で取得したJSONやプロパティリストを任意のデータ型に変換するプロトコル => データをアプリを実装しやすいデータ型に変換することで処理が楽になる
-struct UserImage: Codable {
-    let url: String
-}
+
